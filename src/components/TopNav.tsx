@@ -1,3 +1,20 @@
+import Link from "next/link";
+
 export function TopNav() {
-  return <div>TOPNAV</div>;
+  return (
+    <div className="fixed top-0 left-0 w-screen bg-gray-800 p-2 flex justify-between items-center">
+      <Link href={"/"} className="flex items-center">
+        <img src="/capyness.png" alt="" className="w-[25px]" />
+        <div className="ml-2 font-bold">CapyDiary</div>
+      </Link>
+      <div className="flex">
+        <Link href={"/signup"} className="px-2 mx-1">
+          Sign up
+        </Link>
+        <Link href={"/login"} className="px-2 mx-1">
+          Log in
+        </Link>
+      </div>
+    </div>
+  );
 }
