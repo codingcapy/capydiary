@@ -1,15 +1,15 @@
 "use client";
 
-import { SignupState } from "@/types/types";
+import { LoginState } from "@/types/types";
 import { useActionState } from "react";
 
-export function SignupForm({
+export function LoginForm({
   action,
 }: {
   action: (
-    prevState: SignupState | null,
+    prevState: LoginState | null,
     formData: FormData,
-  ) => Promise<SignupState>;
+  ) => Promise<LoginState>;
 }) {
   const [state, formAction] = useActionState(action, null);
 
@@ -30,7 +30,7 @@ export function SignupForm({
           className="border rounded p-1 my-1"
           required
         />
-        <button className="px-3 py-2 rounded bg-teal-500 my-1">SIGN UP</button>
+        <button className="px-3 py-2 rounded bg-teal-500 my-1">LOGIN</button>
       </form>
 
       {state?.error && <p>{state.error}</p>}

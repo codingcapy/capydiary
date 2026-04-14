@@ -2,11 +2,7 @@ import { SignupForm } from "@/components/SignupForm";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { hashPassword } from "@/lib/password";
-
-type SignupState = {
-  error?: string;
-  success?: boolean;
-};
+import { SignupState } from "@/types/types";
 
 export default function SignupPage() {
   async function signup(
