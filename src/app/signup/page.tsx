@@ -10,22 +10,17 @@ export default function SignupPage() {
     formData: FormData,
   ): Promise<SignupState> {
     "use server";
-
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-
     if (!email || !password) {
       return { error: "Missing fields" };
     }
-
     try {
       const hashedPassword = await hashPassword(password);
-
       await db.insert(users).values({
         email,
         password: hashedPassword,
       });
-
       return { success: true };
     } catch (err: any) {
       console.log(err);
@@ -44,7 +39,6 @@ export default function SignupPage() {
         <div className="text-center text-4xl font-bold text-teal-300 mb-2">
           Sign Up
         </div>
-
         <SignupForm action={signup} />
       </div>
     </div>
