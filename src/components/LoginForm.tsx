@@ -34,7 +34,6 @@ export function LoginForm({
       </form>
 
       {state?.error && <p>{state.error}</p>}
-      {state?.success && <p>Account created!</p>}
     </>
   );
 }

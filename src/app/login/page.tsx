@@ -29,8 +29,9 @@ export default function LoginPage() {
       session.userId = user.userId;
       session.email = user.email;
       await session.save();
-      redirect("/");
+      redirect("/dashboard");
     } catch (err: any) {
+      if (err?.digest?.startsWith("NEXT_REDIRECT")) throw err;
       console.log(err);
       return { error: "Something went wrong" };
     }
