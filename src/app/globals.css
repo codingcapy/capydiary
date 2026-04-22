@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Remove Tiptap editor focus outline */
+.ProseMirror:focus {
+  outline: none;
+}
