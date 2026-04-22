@@ -2,9 +2,16 @@ import { SignupForm } from "@/components/SignupForm";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { hashPassword } from "@/lib/password";
+import { getSession } from "@/lib/session";
 import { SignupState } from "@/types/types";
+import { redirect } from "next/navigation";
 
-export default function SignupPage() {
+export default async function SignupPage() {
+  const session = await getSession();
+  if (session.userId) {
+    redirect("/dashboard");
+  }
+
   async function signup(
     prevState: SignupState | null,
     formData: FormData,

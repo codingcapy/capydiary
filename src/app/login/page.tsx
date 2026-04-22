@@ -7,7 +7,12 @@ import { getSession } from "@/lib/session";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getSession();
+  if (session.userId) {
+    redirect("/dashboard");
+  }
+
   async function login(
     prevState: LoginState | null,
     formData: FormData,
