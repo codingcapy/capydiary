@@ -121,3 +121,12 @@ export async function getEntry(
     createdAt: row.createdAt.toISOString(),
   };
 }
+
+export async function deleteEntry(userId: string, entryId: string) {
+  const rows = await db
+    .delete(entries)
+    .where(and(eq(entries.entryId, entryId), eq(entries.userId, userId)))
+    .returning({ entryId: entries.entryId });
+
+  return rows[0] ?? null;
+}

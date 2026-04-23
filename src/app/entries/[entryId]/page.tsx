@@ -1,8 +1,8 @@
 import { LeftNav } from "@/components/LeftNav";
+import { EntryActions } from "@/components/EntryActions";
 import { getEntry } from "@/lib/entries";
 import { getSession } from "@/lib/session";
 import { notFound, redirect } from "next/navigation";
-import { EntryMenu } from "@/components/EntryMenu";
 import sanitizeHtml from "sanitize-html";
 
 function formatEntryDate(createdAt: string) {
@@ -67,7 +67,7 @@ export default async function EntryPage({
       <div className="pt-20 sm:min-w-3xl max-w-3xl p-8 mx-auto">
         <div className="relative flex justify-between">
           <h1 className="text-2xl font-bold text-zinc-100">{entry.title}</h1>
-          <EntryMenu />
+          <EntryActions entryId={entry.entryId} />
         </div>
         <p className="mt-1 text-sm text-zinc-500">
           {formatEntryDate(entry.createdAt)}

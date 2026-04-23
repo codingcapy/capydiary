@@ -1,6 +1,7 @@
 "use client";
 
 import { LoginState } from "@/types/types";
+import Link from "next/link";
 import { useActionState } from "react";
 
 export function LoginForm({
@@ -32,8 +33,13 @@ export function LoginForm({
         />
         <button className="px-3 py-2 rounded bg-teal-500 my-1">LOGIN</button>
       </form>
-
       {state?.error && <p>{state.error}</p>}
+      <div className="flex">
+        <div className="mr-2">Don't have an account?</div>{" "}
+        <Link href={"/signup"} className="font-bold text-teal-400">
+          Sign up
+        </Link>
+      </div>
     </>
   );
 }

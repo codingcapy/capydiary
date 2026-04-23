@@ -5,7 +5,11 @@ import { FaEllipsis } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 
-export function EntryMenu() {
+type EntryMenuProps = {
+  onDeleteClick?: () => void;
+};
+
+export function EntryMenu({ onDeleteClick }: EntryMenuProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -40,10 +44,17 @@ export function EntryMenu() {
             <FaRegBookmark size={20} className="pt-1" />
             <div className="ml-1 cursor-pointer">Edit</div>
           </div>
-          <div className="py-2 flex cursor-pointer text-red-400">
+          <button
+            type="button"
+            onClick={() => {
+              onDeleteClick?.();
+              setOpen(false);
+            }}
+            className="flex py-2 text-red-400"
+          >
             <FaRegTrashAlt size={20} className="pt-1" />
-            <div className="ml-1">Delete</div>
-          </div>
+            <div className="ml-1 cursor-pointer">Delete</div>
+          </button>
         </div>
       )}
     </div>
