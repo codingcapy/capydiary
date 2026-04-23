@@ -1,45 +1,8 @@
 import { LeftNav } from "@/components/LeftNav";
-import { EntryActions } from "@/components/EntryActions";
+import { EntryDetail } from "@/components/EntryDetail";
 import { getEntry } from "@/lib/entries";
 import { getSession } from "@/lib/session";
 import { notFound, redirect } from "next/navigation";
-import sanitizeHtml from "sanitize-html";
-
-function formatEntryDate(createdAt: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(createdAt));
-}
-
-function sanitizeEntryContent(content: string | null) {
-  return sanitizeHtml(content ?? "", {
-    allowedTags: [
-      "p",
-      "br",
-      "strong",
-      "em",
-      "u",
-      "s",
-      "ul",
-      "ol",
-      "li",
-      "a",
-      "blockquote",
-      "code",
-      "pre",
-      "h1",
-      "h2",
-      "h3",
-    ],
-    allowedAttributes: {
-      a: ["href", "target", "rel"],
-    },
-    allowedSchemes: ["http", "https", "mailto", "tel"],
-  });
-}
 
 export default async function EntryPage({
   params,
@@ -59,24 +22,15 @@ export default async function EntryPage({
     notFound();
   }
 
-  const contentHtml = sanitizeEntryContent(entry.content);
-
   return (
     <div className="flex flex-col">
       <LeftNav />
-      <div className="pt-20 sm:min-w-3xl max-w-3xl p-8 mx-auto">
-        <div className="relative flex justify-between">
-          <h1 className="text-2xl font-bold text-zinc-100">{entry.title}</h1>
-          <EntryActions entryId={entry.entryId} />
-        </div>
-        <p className="mt-1 text-sm text-zinc-500">
-          {formatEntryDate(entry.createdAt)}
-        </p>
-        <div
-          className="entry-content mt-6 text-zinc-300 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
-      </div>
+      <EntryDetail
+        entryId={entry.entryId}
+        initialTitle={entry.title}
+        initialContent={entry.content}
+        createdAt={entry.createdAt}
+      />
     </div>
   );
 }

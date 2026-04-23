@@ -4,7 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { EntryMenu } from "@/components/EntryMenu";
 
-export function EntryActions({ entryId }: { entryId: string }) {
+export function EntryActions({
+  entryId,
+  onEditClick,
+}: {
+  entryId: string;
+  onEditClick?: () => void;
+}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +41,7 @@ export function EntryActions({ entryId }: { entryId: string }) {
   return (
     <>
       <EntryMenu
+        onEditClick={onEditClick}
         onDeleteClick={() => {
           setError(null);
           setShowDeleteModal(true);

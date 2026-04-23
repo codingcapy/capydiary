@@ -6,10 +6,11 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 
 type EntryMenuProps = {
+  onEditClick?: () => void;
   onDeleteClick?: () => void;
 };
 
-export function EntryMenu({ onDeleteClick }: EntryMenuProps) {
+export function EntryMenu({ onEditClick, onDeleteClick }: EntryMenuProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -40,10 +41,17 @@ export function EntryMenu({ onDeleteClick }: EntryMenuProps) {
       </button>
       {open && (
         <div className="absolute top-8 right-0 px-5 py-2 shadow-[0_0_15px_rgba(0,0,0,0.7)] z-40 bg-zinc-800 rounded">
-          <div className="py-2 flex">
+          <button
+            type="button"
+            onClick={() => {
+              onEditClick?.();
+              setOpen(false);
+            }}
+            className="flex py-2"
+          >
             <FaRegBookmark size={20} className="pt-1" />
             <div className="ml-1 cursor-pointer">Edit</div>
-          </div>
+          </button>
           <button
             type="button"
             onClick={() => {

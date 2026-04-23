@@ -130,3 +130,36 @@ export async function deleteEntry(userId: string, entryId: string) {
 
   return rows[0] ?? null;
 }
+
+export async function updateEntry(
+  userId: string,
+  entryId: string,
+  title: string,
+  content: string | null,
+) {
+  const rows = await db
+    .update(entries)
+    .set({
+      title,
+      content,
+    })
+    .where(and(eq(entries.entryId, entryId), eq(entries.userId, userId)))
+    .returning({
+      entryId: entries.entryId,
+      title: entries.title,
+      content: entries.content,
+      createdAt: entries.createdAt,
+    });
+
+  const row = rows[0];
+  if (!row) {
+    return null;
+  }
+
+  return {
+    entryId: row.entryId,
+    title: row.title,
+    content: row.content,
+    createdAt: row.createdAt.toISOString(),
+  };
+}
