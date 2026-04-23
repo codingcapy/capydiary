@@ -153,7 +153,9 @@ export function EntryDetail({
                 contentPlaceholder="Content (optional)"
               />
             </div>
-            {error ? <p className="mt-3 text-sm text-red-400">{error}</p> : null}
+            {error ? (
+              <p className="mt-3 text-sm text-red-400">{error}</p>
+            ) : null}
             <div className="mt-4 flex justify-end gap-2">
               <button
                 type="button"
@@ -175,7 +177,9 @@ export function EntryDetail({
         ) : (
           <div className="min-w-0 flex-1">
             <h1 className="text-2xl font-bold text-zinc-100">{title}</h1>
-            <p className="mt-1 text-sm text-zinc-500">{formatEntryDate(createdAt)}</p>
+            <p className="mt-1 text-sm text-zinc-500">
+              {formatEntryDate(createdAt)}
+            </p>
             <div
               className="entry-content mt-6 text-zinc-300 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: contentHtml }}
