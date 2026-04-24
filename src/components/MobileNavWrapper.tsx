@@ -1,9 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useNav } from "./NavContext";
 
 export function MobileNavWrapper({ children }: { children: React.ReactNode }) {
   const { isNavOpen, closeNav } = useNav();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    closeNav();
+  }, [pathname]);
 
   return (
     <>
