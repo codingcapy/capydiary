@@ -1,5 +1,6 @@
 import { CreateEntryForm } from "@/components/CreateEntryForm";
 import { LeftNav } from "@/components/LeftNav";
+import { MobileNavWrapper } from "@/components/MobileNavWrapper";
 import { getSession } from "@/lib/session";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
@@ -46,7 +47,9 @@ export default function NewEntryPage() {
 
   return (
     <div className="flex flex-col">
-      <LeftNav />
+      <MobileNavWrapper>
+        <LeftNav />
+      </MobileNavWrapper>
       <CreateEntryForm action={createEntry} />
     </div>
   );

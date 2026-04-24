@@ -1,4 +1,5 @@
 import { LeftNav } from "@/components/LeftNav";
+import { MobileNavWrapper } from "@/components/MobileNavWrapper";
 import { EntryDetail } from "@/components/EntryDetail";
 import { getEntry } from "@/lib/entries";
 import { getSession } from "@/lib/session";
@@ -24,7 +25,9 @@ export default async function EntryPage({
 
   return (
     <div className="flex flex-col">
-      <LeftNav />
+      <MobileNavWrapper>
+        <LeftNav />
+      </MobileNavWrapper>
       <EntryDetail
         entryId={entry.entryId}
         initialTitle={entry.title}

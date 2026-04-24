@@ -132,7 +132,7 @@ export function EntryDetail({
   const contentHtml = sanitizeEntryContent(content);
 
   return (
-    <div className="pt-20 sm:min-w-3xl max-w-3xl p-8 mx-auto">
+    <div className="pt-20 sm:w-[600px] md:pl-[250px] md:w-3xl 2xl:pl-0 lg:w-[1000px] mx-auto">
       <div className="relative flex justify-between gap-4">
         {isEditing ? (
           <form className="w-full" onSubmit={handleSave}>
