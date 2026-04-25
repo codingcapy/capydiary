@@ -27,6 +27,7 @@ export function UserMenu({ email }: { email: string }) {
           <Link
             href="/settings"
             className="block px-4 py-2 hover:bg-zinc-100 text-sm"
+            onClick={() => setOpen(false)}
           >
             Settings
           </Link>
